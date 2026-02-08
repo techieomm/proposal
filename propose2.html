@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Happy Proposal Day 💍</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ================= BACKGROUND ================= */
+body{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+  background: linear-gradient(135deg, #cc76d6, #d38135, #de4a79);
+}
+
+/* ================= LOCK SCREEN ================= */
+.lock{
+  position:fixed;
+  inset:0;
+  background:#0f3460;
+  color:white;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:15px;
+  z-index:1000;
+}
+
+.lock input{
+  padding:12px;
+  border:none;
+  border-radius:30px;
+  outline: none;
+  text-align: center;
+  width: 200px;
+}
+
+.lock button {
+  padding: 10px 25px;
+  background: #e94560;
+  color: white;
+  font-weight: bold;
+  border-radius: 30px;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 4px 15px rgba(233, 69, 96, 0.4);
+}
+
+/* ================= MAIN CARD ================= */
+.card{
+  background:rgba(255,255,255,0.05);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding:40px;
+  border-radius:30px;
+  text-align:center;
+  width:92%;
+  max-width:400px;
+  box-shadow:0 25px 50px rgba(0,0,0,0.5);
+  display:none;
+  z-index: 10;
+  color: white;
+}
+
+h1{
+  color:#e94560;
+  margin-bottom:20px;
+  font-size: 26px;
+  text-shadow: 0 0 10px rgba(233, 69, 96, 0.3);
+}
+
+/* ================= BUTTONS ================= */
+.btn-row{
+  display:flex;
+  justify-content:center;
+  align-items: center;
+  gap:15px;
+  margin-top: 25px;
+}
+
+button{
+  padding:12px 30px;
+  border:none;
+  border-radius:50px;
+  font-size:16px;
+  cursor:pointer;
+  transition: all 0.3s ease;
+}
+
+#yesBtn{
+  background:#e94560;
+  color:white;
+}
+
+#noBtn{
+  background:#4e4e6a;
+  color: #ccc;
+}
+
+/* ================= ASSETS ================= */
+.gif, .slide{
+  width:180px;
+  height: 180px;
+  object-fit: cover;
+  margin:15px auto;
+  display:none;
+  border-radius:20px;
+  border: 2px solid #e94560;
+}
+
+.cry-text{
+  display:none;
+  font-size:15px;
+  color:#e94560;
+  margin-top: 15px;
+  font-weight: 500;
+}
+
+.love-text{
+  margin-top:15px;
+  font-size:17px;
+  color:#ffffff;
+  font-weight:400;
+  display:none;
+  line-height: 1.5;
+}
+
+/* ================= POPUP ================= */
+.popup{
+  position:fixed;
+  inset:0;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  background:rgba(0,0,0,0.8);
+  z-index: 2000;
+}
+
+.popup-box{
+  background:#1a1a2e;
+  border: 2px solid #e94560;
+  color: white;
+  padding:40px;
+  border-radius:30px;
+  text-align: center;
+  max-width: 300px;
+}
+
+/* ================= ANIMATED PROPS ================= */
+.ring-icon {
+  font-size: 50px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.floating-heart{
+  position:fixed;
+  bottom:-20px;
+  font-size: 24px;
+  z-index: 5;
+  animation:float 4s linear infinite;
+}
+@keyframes float{
+  to{transform:translateY(-110vh) rotate(360deg); opacity:0;}
+}
+
+/* ================= TIMELINE ================= */
+.timelinePage{
+  position:fixed;
+  inset:0;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  background: #0f3460;
+  z-index:1500;
+  overflow-y: auto;
+}
+
+.timelineCard{
+  background:rgba(255,255,255,0.05);
+  padding:30px;
+  border-radius:25px;
+  width:90%;
+  max-width:400px;
+  text-align:center;
+  color: white;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.tlItem{
+  background:rgba(255,255,255,0.1);
+  padding:15px;
+  margin:20px 0;
+  border-radius:15px;
+  color:#fff;
+}
+
+.tlItem img {
+  border-radius: 10px;
+  margin-top: 10px;
+  border: 1px solid #e94560;
+}
+
+.back-btn {
+    margin-top: 20px;
+    background: transparent;
+    color: #e94560;
+    border: 1px solid #e94560;
+}
+</style>
+</head>
+
+<body>
+
+<div class="lock" id="lock">
+  <span class="ring-icon">💍</span>
+  <h2>A Special Proposal Awaits</h2>
+  <input type="password" id="pass" placeholder="Enter Secret Word">
+  <button onclick="unlock()">Unlock My Heart ❤️</button>
+  <small>hint: proposal2026</small>
+</div>
+
+<div class="card" id="card">
+  <h1 id="question">Will you make me the luckiest person and be mine forever? 💍</h1>
+
+  <img id="cryGif" class="gif" src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHRvNHhrc3g1dGRoNTR6aXc3MjN3dnJhdTB1YndyOGNyYWR1NmYzOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/vltEVKbSy0U6ypwba1/giphy.gif">
+  <div id="cryText" class="cry-text">Please think about it again... 🥺</div>
+
+  <div class="btn-row">
+    <button id="yesBtn">Yes, I Will! 💍</button>
+    <button id="noBtn">No 🛑</button>
+  </div>
+
+  <img id="loveGif" class="gif" src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExYmluZ3NhYWF6M3E1bHRkbGR6eXcxcjNvcnk5MTY1OG1lMnVjYTE2OSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/EatwJZRUIv41G/giphy.gif">
+  <img id="slide" class="slide" src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2gwNDh2aTVoNHl3ZWtvemkzcnUwc2t2aWQ1a283eWFqZ29zYmFqZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/GA2Opryocs0tq/giphy.gif">
+  <div id="loveText" class="love-text"></div>
+</div>
+
+<div class="popup" id="popup">
+  <div class="popup-box">
+    <span style="font-size: 50px;">💎</span><br>
+    <h2>She/He Said YES!</h2>
+    <p>My heart is yours forever.</p><br>
+    <button onclick="document.getElementById('popup').style.display='none'" style="background:#e94560; color:white;">❤️</button>
+  </div>
+</div>
+
+<div id="timelinePage" class="timelinePage">
+  <div class="timelineCard">
+    <h2 style="color:#e94560">Our Journey to 'Yes' 💍</h2>
+    <div class="tlItem">✨ The Day We Met<br><img src="photos/meet.jpg" width="150" onerror="this.src='https://placehold.co/150x150?text=Memorable+Day'"></div>
+    <div class="tlItem">💌 The First 'I Love You'<br><img src="photos/love.jpg" width="150" onerror="this.src='https://placehold.co/150x150?text=Sweet+Chat'"></div>
+    <div class="tlItem">🔒 Today: A New Beginning</div>
+    <button class="back-btn" onclick="closeTimeline()">Close 💕</button>
+  </div>
+</div>
+
+<audio id="music" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const lock = document.getElementById("lock");
+const card = document.getElementById("card");
+const pass = document.getElementById("pass");
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const loveGif = document.getElementById("loveGif");
+const cryGif = document.getElementById("cryGif");
+const cryText = document.getElementById("cryText");
+const slide = document.getElementById("slide");
+const loveText = document.getElementById("loveText");
+const popup = document.getElementById("popup");
+const music = document.getElementById("music");
+const question = document.getElementById("question");
+
+const noMessages = [
+  "Are you absolutely sure? 🥺",
+  "But we're perfect together! 😢",
+  "Don't do this to me... 💔",
+  "Give me one more chance? 😭",
+  "I'll buy you pizza! 🍕",
+  "Clicking 'Yes' is much easier..."
+];
+
+let noCount = 0;
+let yesSize = 16;
+
+function unlock(){
+  // Updated password to match Proposal Day
+  if(pass.value === "proposal"){
+    lock.style.display = "none";
+    card.style.display = "block";
+  } else {
+    alert("Incorrect password! Try 'proposal'");
+  }
+}
+
+/* NO BUTTON - Guilt Trip Logic */
+noBtn.onclick = () => {
+  noCount++;
+  cryGif.style.display = "block";
+  cryText.style.display = "block";
+  
+  if(noCount <= noMessages.length){
+    noBtn.innerHTML = noMessages[noCount-1];
+  } else {
+    noBtn.style.display = "none";
+    cryText.innerHTML = "Fine... I'll wait here until you click Yes. 🥺";
+  }
+
+  // Make Yes button bigger and bigger
+  yesSize += 15;
+  yesBtn.style.fontSize = yesSize + "px";
+  yesBtn.style.padding = (yesSize/1.2) + "px " + (yesSize*1.5) + "px";
+};
+
+/* YES BUTTON - Celebration Logic */
+yesBtn.onclick = () => {
+  yesBtn.style.display = "none";
+  noBtn.style.display = "none";
+  cryGif.style.display = "none";
+  cryText.style.display = "none";
+  question.style.display = "none";
+
+  loveGif.style.display = "block";
+  slide.style.display = "block";
+  loveText.style.display = "block";
+  popup.style.display = "flex";
+  
+  try { music.play(); } catch(e){}
+
+  startCelebration();
+  startSlides();
+  typeMessage();
+
+  setTimeout(() => {
+    document.getElementById("timelinePage").style.display = "flex";
+  }, 6000);
+};
+
+function startCelebration(){
+  setInterval(() => {
+    const h = document.createElement("div");
+    h.className = "floating-heart";
+    h.innerHTML = ["💍","💎","✨","❤️","🌹"][Math.floor(Math.random()*5)];
+    h.style.left = Math.random() * 100 + "vw";
+    h.style.color = "#e94560";
+    document.body.appendChild(h);
+    setTimeout(() => h.remove(), 4000);
+  }, 200);
+}
+
+const images = ["photos/1.jpg", "photos/2.jpg", "photos/3.jpg"]; 
+
+function startSlides(){
+  let i = 0;
+  slide.src = images[0];
+  setInterval(() => {
+    i++;
+    slide.src = images[i % images.length];
+  }, 2000);
+}
+
+function typeMessage(){
+  const msg = "From the moment I met you, I knew my search was over. I promise to hold your hand through every high and low. ❤️";
+  let i = 0;
+  const t = setInterval(() => {
+    loveText.innerHTML += msg[i];
+    i++;
+    if(i >= msg.length) clearInterval(t);
+  }, 50);
+}
+
+function closeTimeline(){
+  document.getElementById("timelinePage").style.display = "none";
+}
+</script>
+
+</body>
+</html>
